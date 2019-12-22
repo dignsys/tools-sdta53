@@ -8,7 +8,7 @@
 lang en_US.UTF-8
 keyboard us
 timezone --utc America/Los_Angeles
-part /boot --fstype="ext4" --size=24 --ondisk=mmcblk0 --active --label boot --fsoptions=defaults,noatime
+part /boot --fstype="ext4" --size=48 --ondisk=mmcblk0 --active --label boot --fsoptions=defaults,noatime
 part /lib/modules --fstype="ext4" --size=25 --ondisk=mmcblk0 --active --label modules --fsoptions=defaults,noatime
 
 
@@ -20,7 +20,7 @@ desktop --autologinuser=guest
 user --name guest  --groups audio,video --password 'tizen'
 
 
-repo --name=local --baseurl=file:///home/hbahn/GBS-SDTA53-ROOT/tizen_sdta53/local/repos/tizen_sdta53/armv7l/ --priority=1
+repo --name=local --baseurl=file:///home/hbahn/GBS-SDTA53-ROOT/tizen_sdta53/local/repos/tizen_sdta53/aarch64/ --priority=1
 
 #repo --name=unified-standard --baseurl=http://download.tizen.org/releases/milestone/tizen/unified/tizen-unified_20190523.1/repos/standard/packages/ --ssl_verify=no
 #repo --name=unified-standard --baseurl=http://download.tizen.org/snapshots/tizen/unified/tizen-unified_20190923.1/repos/standard/packages/ --ssl_verify=no
@@ -29,32 +29,21 @@ repo --name=unified-standard --baseurl=http://download.tizen.org/snapshots/tizen
 repo --name=base-standard --baseurl=http://download.tizen.org/snapshots/tizen/base/latest/repos/standard/packages/ --ssl_verify=no
 
 %packages
-
 # @ IoT Boot Artik 710
 artik710-raptor-linux-kernel
 artik710-raptor-linux-kernel-modules
-boot-firmware-sdta53
+sdta53-boot-firmware
 #u-boot-artik710
 # Others
 
-
-
-
 %end
 
-
 %attachment
-/u-boot/bl1-emmcboot.img;
-/u-boot/fip-loader-emmc.img;
-/u-boot/fip-secure.img;
-/u-boot/fip-nonsecure.img;
-/u-boot/params.bin
 
-/boot/Image
-/boot/s5p6818-artik710-raptor-rev00.dtb
-/boot/s5p6818-artik710-raptor-rev03.dtb
-/boot/logo.bmp
-/boot/uInitrd
+/u-boot/fip-nonsecure.img
+/u-boot/params.bin
+#/boot/logo.bmp
+
 %end
 
 %post

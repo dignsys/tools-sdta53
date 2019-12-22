@@ -50,5 +50,4 @@ function run_by_usb()
     fi
 }
 
-get_board_prefix
 run_by_usb
