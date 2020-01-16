@@ -16,7 +16,8 @@
 - partmap_artik710_tizen_emmc.txt       - from boot-firmwares-sdta53
 
 <copy & install binary to result directory>
-	$ cd Tizen-Work-boot-sdta53
+        $ mkdir -p sdta/Tizen-Work-boot
+        $ cd sdta/Tizen-Work-boot
 	$ mkdir result
 	$ cp boot-firmwares-sdta53/files/* result
 	$ cd result
@@ -28,10 +29,10 @@
 =====================
 2-1. Directories
    1) tool directory :
-	sdta/Tizen-Work-boot-sdta53/tools-sdta53/scripts
+	sdta/Tizen-Work-boot/tools-sdta53/scripts
 
    2) result data & binary directory :
-	sdta/Tizen-Work-boot-sdta53/result
+	sdta/Tizen-Work-boot/result
 
    3) binary files :
 	- bl1-sdta53.bin
@@ -60,11 +61,11 @@
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      1) Directories
 	- tools & file directory :
-		sdta/Tizen-Work-boot-sdta53/tools-sdta53/scripts
-		sdta/Tizen-Work-boot-sdta53/tools-sdta53/files
+		sdta/Tizen-Work-boot/tools-sdta53/scripts
+		sdta/Tizen-Work-boot/tools-sdta53/files
 
 	- result data & binary directory :
-		sdta/Tizen-Work-boot-sdta53/result
+		sdta/Tizen-Work-boot/result
 
 		*** copy all data & binay to result directory
 			: tizen boot packages
@@ -75,9 +76,9 @@
 	 - u-boot : bootloader.img, params.bin 
 	 - boot & modules : boot.img, modules.img
 
-	*** extract file from tizen-unified_iot-boot-armv7l-artik530.tar.gz
+	*** extract file from tizen-unified_iot-boot-aarch64-artik710-sdta53.tar.gz
 
-	$ cd ~/sdta/Tizen-Work-boot-sdta53
+	$ cd ~/sdta/Tizen-Work-boot
 	$ ./tools-sdta53/scripts/fastboot-boot-download.sh
 
      3) flash all ninary : boot binary + rootfs & data
@@ -86,4 +87,25 @@
 
 	$ cd ~/sdta/Tizen-Work-boot
 	$ ./tools-sdta53/scripts/fastboot-download.sh
+
+     4) install plugins & packages
+	$ cd tizen-images-sdta/RPMS
+	$ sh pkg_install.sh
+
+
+4. Flash Tizen Image (by thor down)
+==========================================
+4-1. install lthor
+        $ sudo apt-get install lthor
+
+4.2 Target side thordown start
+        artik710# thordown
+        TIZEN "THOR" Downloader
+
+4.3. Flash binary by lthor
+     - only for Tizen image
+        $ sudo lthor tizen-unified_20191203.1_iot-headed-3parts-armv7l-artik530_710.tar.gz
+
+     - both of boot & Tizen image
+        $ sudo lthor tizen-unified_iot-boot-aarch64-artik710-sdta53.tar.gz tizen-unified_20191203.1_iot-headed-3parts-armv7l-artik530_710.tar.gz
 
